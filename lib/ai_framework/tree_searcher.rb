@@ -14,6 +14,9 @@ class TreeSearcher
     end
   end
 
+  # Builds child node with specified action and state
+  # Calculates depth and cost internally.
+  # Note path cost comutation occurs after depth calculation and not like proposed.
   def build_child_node(parent_node, action, state)
     parent_node.build_child_node.tap do |new_node|
       new_node.payload[:state] = state
