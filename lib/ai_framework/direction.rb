@@ -41,6 +41,11 @@ class Direction
     self.class.new(0, vertical)
   end
 
+  def inverted
+    self.class.new(horizontal * -1, vertical * -1)
+  end
+  alias_method :opposite, :inverted
+
   # True is direction has horizontal component
   def horizontal?
     horizontal != 0
