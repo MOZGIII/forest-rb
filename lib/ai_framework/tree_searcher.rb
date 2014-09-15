@@ -5,12 +5,21 @@ class TreeSearcher
     @context = context
   end
 
-  def self.build_root_node(start_state, start_action)
+  def self.build_root_node(start_action, start_state)
     Node.new.tap do |node|
       node.payload[:state] = start_state
       node.payload[:action] = start_action
       node.payload[:depth] = 1
       node.payload[:path_cost] = 0
+    end
+  end
+
+  def build_child_node(parent_node, action, state)
+    parent_node.build_child_node.tap do |new_node|
+      new_node.payload[:state] = state
+      new_node.payload[:action] = action
+      new_node.payload[:depth] = parent_node.payload[:depth] + 1
+      new_node.payload[:path_cost] = parent_node.payload[:path_cost] + step_cost(parent_node, action, new_node)
     end
   end
 
@@ -29,12 +38,7 @@ class TreeSearcher
   def expand(node)
     successors = []
     enumerate_successors(node) do |action, result|
-      new_node = node.build_child_node
-      new_node.payload[:state] = result
-      new_node.payload[:action] = action
-      new_node.payload[:depth] = node.payload[:depth] + 1
-      new_node.payload[:path_cost] = node.payload[:path_cost] + step_cost(node, action, new_node)
-      successors << new_node
+      successors << build_child_node(node, action, result)
     end
     successors
   end

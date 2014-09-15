@@ -45,7 +45,7 @@ if $0 == __FILE__
   # Save map in our format
   MapFormat::Json.save(map, "map.json")
 
-  root_node = TreeSearcher.build_root_node(start_state, SpawnAction.new)
+  root_node = TreeSearcher.build_root_node(SpawnAction.new, start_state)
   solution = searcher.search(fringe, root_node)
   unless solution
     STDERR.puts "Solution not found!"
