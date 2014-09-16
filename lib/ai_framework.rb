@@ -11,8 +11,9 @@ require 'ai_framework/sensors_storage'
 require 'ai_framework/agent_base'
 require 'ai_framework/agent'
 require 'ai_framework/search_context'
-require 'ai_framework/tree_searcher'
 require 'ai_framework/solution_exporter'
+
+require 'ai_framework/pathfinders/tree_search'
 
 require 'ai_framework/map_formats/json'
 require 'ai_framework/map_formats/ascii_graphics'
