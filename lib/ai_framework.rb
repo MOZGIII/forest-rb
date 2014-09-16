@@ -12,6 +12,7 @@ require 'ai_framework/agent_base'
 require 'ai_framework/agent'
 require 'ai_framework/search_context'
 require 'ai_framework/solution_exporter'
+require 'ai_framework/utils/viewport_calculator'
 
 require 'ai_framework/pathfinders/tree_search'
 
