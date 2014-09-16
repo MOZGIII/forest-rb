@@ -43,10 +43,20 @@ class TreeSearcher
   # Given a node, returns its successors, depending on context.
   def expand(node)
     successors = []
-    context.enumerate_successors(node) do |action, result|
+    enumerate_successors(node) do |action, result|
       successors << build_child_node(node, action, result)
     end
     successors
+  end
+
+  # Takes a tree search node and returns it's successors' action/state pairs.
+  def enumerate_successors(node)
+    result_positions = []
+    context.allowed_actions.each do |action|
+      next unless context.agent.action_desired?(node.payload[:state], action)
+      new_state = node.payload[:state].act(action)
+      yield [action, new_state]
+    end
   end
 
   # Step cost for the simplest case.
