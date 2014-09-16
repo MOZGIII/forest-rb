@@ -5,6 +5,7 @@ class TreeSearcher
     @context = context
   end
 
+  # Builds root node with specified initial parameters.
   def self.build_root_node(start_action, start_state)
     Node.new.tap do |node|
       node.payload[:state] = start_state
@@ -26,39 +27,34 @@ class TreeSearcher
     end
   end
 
+  # Does the actual search.
   def search(fringe, root_node)
     fringe.insert! root_node
     loop do
       return nil if fringe.empty?
       node = fringe.take!
-      return self.class.fetch_solution(node) if context.target_state == node.payload[:state]
+      return self.class.fetch_solution(node) if context.target_state?(node.payload[:state])
       successors = expand(node)
       fringe.insert!(successors)
     end
     raise "Never should go here!"
   end
 
+  # Given a node, returns its successors, depending on context.
   def expand(node)
     successors = []
-    enumerate_successors(node) do |action, result|
+    context.enumerate_successors(node) do |action, result|
       successors << build_child_node(node, action, result)
     end
     successors
   end
 
+  # Step cost for the simplest case.
   def step_cost(node_from, action, node_to)
     1
   end
 
-  def enumerate_successors(node)
-    result_positions = []
-    context.allowed_actions.each do |action|
-      next unless context.agent.action_desired?(node.payload[:state], action)
-      new_state = node.payload[:state].act(action)
-      yield [action, new_state]
-    end
-  end
-
+  # Fetch solutions by going directly up a tree.
   def self.fetch_solution(node)
     solution = [ node.payload[:action] ]
     solution.unshift(node.payload[:action]) while node = node.parent
