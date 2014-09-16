@@ -86,7 +86,7 @@ end
 
 
 if $0 == __FILE__
-  map = MapFormat::AsciiGraphics.load("example_map.txt", offset: [-1, -1])
+  map = MapFormat::AsciiGraphics.load("example_map_big.txt", offset: [-1, -1])
   solution = ::JSON.parse(File.read("solution.json"))["actions"] rescue [ "spawn" ]
 
   ir = IterativeRenderer.new(map, solution,
