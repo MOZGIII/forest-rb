@@ -14,7 +14,9 @@ require 'ai_framework/search_context'
 require 'ai_framework/solution_exporter'
 require 'ai_framework/utils/viewport_calculator'
 
+require 'ai_framework/search_base'
 require 'ai_framework/pathfinders/tree_search'
+require 'ai_framework/pathfinders/depth_limited_search'
 
 require 'ai_framework/map_formats/json'
 require 'ai_framework/map_formats/ascii_graphics'
