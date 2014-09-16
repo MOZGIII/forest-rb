@@ -2,7 +2,7 @@ $: << '../lib'
 require 'ai_framework'
 
 if $0 == __FILE__
-  map = MapFormat::AsciiGraphics.load("example_map.txt", offset: [-1, -1])
+  map = MapFormat::AsciiGraphics.load("example_map_big.txt", offset: [-1, -1])
   world = World.new(map)
   agent = Agent.new
 
