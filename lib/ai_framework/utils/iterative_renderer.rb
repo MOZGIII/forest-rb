@@ -9,8 +9,8 @@ class IterativeRenderer
     @horizontal_viewport = options[:horizontal_viewport] || (0...10)
     @vertical_viewport   = options[:vertical_viewport]   || (0...10)
 
-    @start_position   = options[:start_position]   || [0, 0]
-    @target_position  = options[:target_position]  || [9, 9]
+    @start_position   = options[:start_position] || [0, 0]
+    @target_position  = options[:target_position]
 
     @route = Set.new
     @current_position = nil
