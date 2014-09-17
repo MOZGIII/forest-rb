@@ -20,6 +20,7 @@ require 'ai_framework/utils/iterative_renderer'
 require 'ai_framework/search_base'
 require 'ai_framework/pathfinders/tree_search'
 require 'ai_framework/pathfinders/depth_limited_search'
+require 'ai_framework/pathfinders/iterative_deepening_search'
 
 require 'ai_framework/map_formats/json'
 require 'ai_framework/map_formats/ascii_graphics'
