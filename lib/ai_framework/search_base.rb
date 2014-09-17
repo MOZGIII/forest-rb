@@ -47,6 +47,7 @@ class SearchBase
     context.allowed_actions.each do |action|
       next unless context.agent.action_desired?(node.payload[:state], action)
       new_state = node.payload[:state].act(action)
+      next if node.parent && new_state == node.parent.payload[:state] # disallow going backwards
       yield [action, new_state]
     end
   end
