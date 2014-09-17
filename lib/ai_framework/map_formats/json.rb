@@ -4,11 +4,11 @@ module MapFormat
   module Json
     module_function
 
-    def load(filename)
+    def load(filename, options = {})
       load_from_json_string(File.read(filename))
     end
 
-    def save(map, filename)
+    def save(map, filename, options = {})
       write_to_file(hash_for_map(map), filename)
     end
 
