@@ -2,17 +2,13 @@ class ViewportCalculator
   def initialize(map)
     @map = map
   end
-  
+
   def horizontal
-    a, b = minmax_by(0)
-    return (0..0) unless a && b
-    (a[0]..b[0])
+    get_range_for(0)
   end
 
   def vertical
-    a, b = minmax_by(1)
-    return (0..0) unless a && b
-    (a[1]..b[1])
+    get_range_for(1)
   end
 
   def width
@@ -25,9 +21,15 @@ class ViewportCalculator
 
 private
 
-  def minmax_by(index)
-    @map.obstacles.minmax do |a, b|
+  def self.minmax_by(obstacles, index)
+    obstacles.minmax do |a, b|
       a[index] <=> b[index]
     end
+  end
+
+  def get_range_for(index)
+    a, b = self.class.minmax_by(@map.obstacles, index)
+    return (0..0) unless a && b
+    (a[index]..b[index])
   end
 end
