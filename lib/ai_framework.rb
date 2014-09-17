@@ -15,6 +15,7 @@ require 'ai_framework/solution_exporter'
 require 'ai_framework/utils/viewport_calculator'
 require 'ai_framework/utils/map_loader'
 require 'ai_framework/utils/helpers'
+require 'ai_framework/utils/iterative_renderer'
 
 require 'ai_framework/search_base'
 require 'ai_framework/pathfinders/tree_search'
