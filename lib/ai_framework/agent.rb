@@ -3,9 +3,9 @@ require 'ai_framework/agent_base'
 class Agent < AgentBase
   def self.sensor_classes
     [
-      WorldCollisionSensor,  # this is what makes things work
-      AlreadyVisitedSensor,  # optional, makes searches not overlap
-      # DesiredStateSensor,  # can be used to hang actor at the desired state
+      WorldCollisionSensor,    # this is what makes things work
+      # AlreadyVisitedSensor,  # optional, makes searches not overlap
+      # DesiredStateSensor,    # can be used to hang actor at the desired state
     ]
   end
 
