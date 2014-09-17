@@ -10,7 +10,7 @@ class SearchBase
     Node.new.tap do |node|
       node.payload[:state] = start_state
       node.payload[:action] = start_action
-      node.payload[:depth] = 1
+      node.payload[:depth] = 0
       node.payload[:path_cost] = 0
     end
   end
