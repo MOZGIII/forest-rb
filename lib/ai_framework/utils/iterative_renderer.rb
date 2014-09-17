@@ -3,6 +3,9 @@ class IterativeRenderer
     @map = map
     @solution = solution
 
+    @draw_mode = options[:draw_mode] || :all
+    raise ArgumentError, "Unknown draw mode #{draw_mode.inspect}" unless [:all, :solution_only].member?(@draw_mode)
+
     @horizontal_viewport = options[:horizontal_viewport] || (0...10)
     @vertical_viewport   = options[:vertical_viewport]   || (0...10)
 
@@ -22,11 +25,21 @@ class IterativeRenderer
       @vertical_viewport.each do |x|
         local_position = [x, y]
 
-        # Empty space
-        pixel = "."
+        # Only draw map if asked
+        if @draw_mode == :solution_only
 
-        # Map obstacles
-        pixel = "#" if @map.obstacles.member?(local_position)
+          # Empty space
+          pixel = " "
+
+        else
+
+          # Empty space
+          pixel = "."
+
+          # Map obstacles
+          pixel = "#" if @map.obstacles.member?(local_position)
+
+        end
 
         # Route
         pixel = "+" if @route.member?(local_position)

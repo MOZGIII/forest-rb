@@ -28,6 +28,7 @@ if $0 == __FILE__
   options[:map_options]    ||= {}
   options[:start_position] ||= [0, 0]
   options[:frame_delay]    ||= 0.3
+  options[:draw_mode]      ||= :all
 
   map_loader = MapLoader.new(options[:map_file])
   map = map_loader.load(options[:map_options])
@@ -38,6 +39,7 @@ if $0 == __FILE__
     target_position:      options[:target_position],
     horizontal_viewport:  options[:horizontal_viewport],
     vertical_viewport:    options[:vertical_viewport],
+    draw_mode:            options[:draw_mode].to_sym,
   }
 
   viewport_calculator = ViewportCalculator.new(map)
