@@ -45,12 +45,20 @@ $ ruby render.rb
 
 This is a very badly organized project, for now.
 Ideally, I should implement some generators to allow building custom stuff upon this project, add some modularity and the ability to reuse code (via gem plugins maybe).
-But that's not gonna happen, as this is just a course project, and this won't probably be used elsewere.
+But that's not gonna happen, as this is just a course project, and this won't probably be used elsewhere.
+
+### Problematic parts
+
+- Classes are not properly decoupled.
+- Pathfinders have a very unstrict API - each have their own search method.
+- SearchContext can sometimes have extra information not needed by particular pathfinder.
+- Data flow and ownership in the project is somewhat illogical (due to inheritance of the API from the books).
+- Not centristic Task class to define and marshal tasks with all the specific parameters required to solve and render a particular problem.
 
 ## Axis
 
 `X` goes right, `Y` goes down. Coordinates start at the top left corner of the world.
-Left is negative `X`, right is positive `X`. Up is negative `Y`, down is poitive `Y`.
+Left is negative `X`, right is positive `X`. Up is negative `Y`, down is positive `Y`.
 
 ## Map formats
 
