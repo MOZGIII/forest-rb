@@ -1,7 +1,7 @@
 $: << '../lib'
 require 'ai_framework'
 
-map = MapFormat::AsciiGraphics.load("example_map_small.txt", offset: [-1, -1])
+map = MapFormat::AsciiGraphics.load("example_map_simple.txt", offset: [-1, -1])
 world = World.new(map)
 agent = Agent.new
 
@@ -23,7 +23,7 @@ allowed_actions = begin
   # Build an array of 8 MoveActions - 1 for each possible direction.
   arr = []
   [1, 0, -1].each do |ver|
-    [1, 0, -1].each do |hor|
+    [-1, 0, 1].each do |hor|
       next if ver == 0 && hor == 0 # there is no such direction
       arr << MoveAction.new(Direction.new(hor, ver))
     end
