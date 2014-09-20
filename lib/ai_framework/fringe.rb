@@ -63,3 +63,9 @@ class FringeSet < Fringe
     array.take
   end
 end
+
+class SearchableFringeFIFO < FringeFIFO
+  def each(&block)
+    array.each(&block)
+  end
+end

@@ -21,6 +21,7 @@ require 'ai_framework/search_base'
 require 'ai_framework/pathfinders/tree_search'
 require 'ai_framework/pathfinders/depth_limited_search'
 require 'ai_framework/pathfinders/iterative_deepening_search'
+require 'ai_framework/pathfinders/double_tree_search.rb'
 
 require 'ai_framework/map_formats/json'
 require 'ai_framework/map_formats/ascii_graphics'
