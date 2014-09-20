@@ -44,12 +44,20 @@ class SearchBase
   # Takes a tree search node and returns it's successors' action/state pairs.
   def enumerate_successors(node)
     result_positions = []
-    context.allowed_actions.each do |action|
-      next unless context.agent.action_desired?(node.payload[:state], action)
+    context[:allowed_actions].each do |action|
+      next unless context[:agent].action_desired?(node.payload[:state], action)
       new_state = node.payload[:state].act(action)
-      next if node.parent && new_state == node.parent.payload[:state] # disallow going backwards
+      next if state_exists_in_parents?(node, new_state) # disallow going backwards
       yield [action, new_state]
     end
+  end
+
+  # Used to check if we're going to reach already unwrapped state
+  def state_exists_in_parents?(node, state)
+    while node = node.parent
+      return true if state == node.payload[:state]
+    end
+    false
   end
 
   # Step cost for the simplest case.

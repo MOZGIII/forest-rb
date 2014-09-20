@@ -1,22 +1,23 @@
-require 'ostruct'
-
-class ValidateableStruct < OpenStruct
-  def self.values(*new_values)
-    @values ||= []
-    @values.concat(new_values) if new_values && !new_values.empty?
-    @values
+class ValidateableStruct < Hash
+  def self.validates(*new_validates)
+    @validates ||= []
+    @validates.concat(new_validates) if new_validates && !new_validates.empty?
+    @validates
   end
 
-  def initialize(*args)
+  def initialize(params)
     super
-    validate_presence!(*self.class.values)
+    params.each do |key, value|
+      self[key] = value
+    end
+    validate_presence!(*self.class.validates)
   end
 
 protected
 
   def validate_presence!(*keys)
     keys.flatten.each do |key|
-      raise ArgumentError, "You must specify #{key}!" unless self.respond_to?(key)
+      raise ArgumentError, "You must specify #{key}!" unless self.key?(key)
     end
   end
 end

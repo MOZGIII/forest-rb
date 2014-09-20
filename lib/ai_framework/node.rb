@@ -1,12 +1,10 @@
-require 'ostruct'
-
 class Node
   attr_reader :parent
   attr_reader :payload
 
   def initialize(parent = nil)
     @parent = parent
-    @payload = OpenStruct.new # we don't need more than that
+    @payload = {} # faster than ostruct
   end
 
   def root?
