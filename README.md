@@ -9,6 +9,38 @@ Do not depend on this code yet, since it's mostly a rough draft now.
 A simple set of classes to assist in implementing algorithms of the Artificial Intelligence course.
 All this code does is simulates a robot that solves a maze.
 
+## Usage
+
+### Running examples
+
+```
+$ cd examples
+$ ruby solve_dts.rb
+Spawned! "Hello!"
+Move right_down
+Move left_down
+Move down
+Move right_down
+Move right_down
+Move right_down
+Move down
+Move right_down
+Move right_down
+Move right
+Move right
+Move right
+Move right
+$ ruby render.rb
+... (solution being rendered)
+```
+
+### Examples list
+
+- `solve_tree_search.rb` - uses standard tree search algorithm
+- `solve_dls.rb` - uses depth limited search algorithm
+- `solve_ids.rb` - uses iterative deepening search algorithm
+- `solve_dts.rb` - uses two-way (double tree) search algorithm
+
 ## Status
 
 This is a very badly organized project, for now.
