@@ -5,4 +5,8 @@ class World
   def initialize(map)
     @map = map
   end
+
+  def inspect
+    to_s
+  end
 end
