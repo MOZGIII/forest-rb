@@ -1,6 +1,18 @@
 class Direction
   attr_reader :horizontal, :vertical
 
+  HORIZONTAL_NAMES = {
+    -1 => :left,
+    0  => :stay,
+    1  => :right,
+  }.freeze
+
+  VERTICAL_NAMES = {
+    -1 => :up,
+    0  => :stay,
+    1  => :down,
+  }.freeze
+
   def initialize(horizontal, vertical)
     validate_argument(horizontal)
     validate_argument(vertical)
@@ -10,19 +22,11 @@ class Direction
   end
 
   def horizontal_names
-    @horizontal_names ||= {
-      -1 => "left",
-      0  => "stay",
-      1  => "right",
-    }
+    HORIZONTAL_NAMES
   end
 
   def vertical_names
-    @vertical_names ||= {
-      -1 => "up",
-      0  => "stay",
-      1  => "down",
-    }
+    VERTICAL_NAMES
   end
 
   def horizontal_name
@@ -69,7 +73,7 @@ class Direction
       arr.join("_")
     end
   end
-  alias_method :to_s, :name  
+  alias_method :to_s, :name
 
   def id
     @id ||= shift_for_id(horizontal) * 10 + shift_for_id(vertical)
